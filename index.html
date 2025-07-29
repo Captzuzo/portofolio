@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Deni Agus Haryadi</title>
+
+  <!-- Fonts & CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;800&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #090e1c, #050517);
+      color: #fff;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      background: rgba(10, 10, 10, 0.6);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    nav .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #00ffff;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: #00ffff;
+    }
+    nav button {
+      background: none;
+      border: none;
+      color: #00ffff;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+    section {
+      min-height: 100vh;
+      padding: 100px 2rem 2rem;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+    }
+    
+    .hero {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+    .hero-img img {
+      max-width: 300px;
+      border-radius: 1rem;
+      justify-content: center;
+      border: 6px solid #00ffff;
+    }
+    .hero-text {
+      max-width: 600px;
+    }
+    .hero-text h1 {
+      font-size: 3rem;
+      font-weight: 800;
+    }
+    .hero-text h3 {
+      font-size: 1.5rem;
+    }
+    .btn-download {
+      background: #00ffff;
+      color: #000;
+      padding: 0.7rem 1.5rem;
+      border-radius: 2rem;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+      box-shadow: 0 0 12px #00ffff;
+    }
+    .social-icons a {
+      margin-right: 1rem;
+      color: #fff;
+      font-size: 1.2rem;
+      transition: 0.3s;
+    }
+    .social-icons a:hover {
+      color: #00ffff;
+    }
+.project-card {
+  background: #1e293b;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+}
+
+.project-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.project-content {
+  padding: 20px;
+  text-align: left;
+}
+
+.project-content h3 {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.project-content p {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  margin-bottom: 1rem;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+
+.project-tags span {
+  background-color: #334155;
+  color: #e2e8f0;
+  font-size: 0.8rem;
+  padding: 6px 10px;
+  border-radius: 5px;
+}
+
+.btn-visit,
+.btn-code {
+  display: inline-block;
+  text-decoration: none;
+  padding: 10px 16px;
+  background-color: #3b82f6;
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease;
+}
+    /* Light Mode */
+    .light-mode {
+      background: #f4f4f4;
+      color: #111;
+    }
+    .light-mode nav {
+      background: rgba(255,255,255,0.9);
+      border-bottom: 1px solid #ddd;
+    }
+    .light-mode nav ul li a {
+      color: #111;
+    }
+    .light-mode nav ul li a.active {
+      color: #0077ff;
+    }
+    .light-mode .btn-download {
+      background: #0077ff;
+      color: #fff;
+      box-shadow: 0 0 12px #0077ff;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Haryadi.my.id</div>
+    <ul>
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#about">Tentang</a></li>
+      <li><a href="#skills">Kemampuan</a></li>
+      <li><a href="#projects">Project</a></li>
+      <li><a href="#contact">Kontak</a></li>
+    </ul>
+    <button id="themeToggle"><i class="fas fa-moon"></i></button>
+  </nav>
+
+  <section class="hero" id="home">
+    <div class="hero-text" data-aos="fade-up">
+      <div class="hero-img" style="margin-bottom: 20px;">
+<img src="img/deni.jpg" alt="Foto Deni" style="max-width: 300px; width: 200%; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);" />
+      </div>
+      
+      <h1>Deni Agus Haryadi</h1>
+      <h3>I'm a <span style="color:#00ffff">Web Developer</span></h3>
+      <p>Saya adalah lulusan Program Studi Sistem Informasi dari Universitas Muria Kudus. Memiliki minat dan keahlian dalam pengembangan aplikasi berbasis web, saya terbiasa menggunakan framework Laravel dan Filament dalam membangun sistem yang efisien, responsif, dan mudah dikembangkan.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fas fa-envelope"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+      </div>
+      <a href="cv-deni-agus.pdf" class="btn-download" download>Download CV</a>
+    </div>
+  </section>
+
+  <section id="about" class="section" data-aos="fade-up">
+    <h2 class="section-title" style="font-size: 2rem; margin-bottom: 20px;">Tentang Saya</h2>
+    <div class="hero-img" style="margin-bottom: 20px;">
+    <img src="img/deni.jpg" alt="Foto Deni" style="max-width: 300px; width: 200%; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);" />
+    </div>
+    <p style="text-align:center; max-width:600px; margin:auto;">
+      Saya adalah <strong style="color:#00ffff">Web Developer</strong> yang fokus membangun web modern, interaktif, dan responsif.
+    </p>
+  </section>
+
+  <section id="skills" data-aos="fade-up">
+    <h2 class="section-title">Kemampuan</h2>
+    <ul style="max-width: 600px; margin:auto;">
+      <li>Frontend: HTML, CSS, JS, Bootstrap</li>
+      <li>Backend: PHP, Laravel</li>
+      <li>Database: MySQL</li>
+      <li>Tools: Git, GitHub</li>
+    </ul>
+  </section>
+
+  <!-- <section id="projects" data-aos="fade-up">
+    <h2 class="section-title ">Project</h2>
+    <div class="project-image hero-img" style="margin-bottom: 20px;">
+          <img src="img/epkl.png" alt="E-PKL">
+        </div>
+        <div class="project-content">
+          <h3>Sistem Informasi Management Pengelolaan Praktek Kerja Lapangan Pada SMK Negeri 3 Kudus Berbasis Web Geolocation</h3>
+          <p>Sistem Informasi Management Pengelolaan Praktek Kerja Lapangan pada SMK Negeri 3 Kudus berbasis web geolokasi. Fitur users, siswa, guru, absensi, laporan kegiatan harian, laporan akhir, evaluasi laporan, penilaian guru, penilaian instansi.</p>
+          <div class="project-tags">
+            <span>Laravel</span>
+            <span>MySQL</span>
+            <span>Bootstrap</span>
+          </div>
+          <a href="https://github.com/Captzuzo/epkl" class="btn-code fab fa-github"></a>
+        </div>
+      </div>
+
+      <!-Project 2 -->
+      <!-- <div class="project-card">
+        <div class="project-image">
+          <img src="img/optimuscell.png" alt="Inventory System">
+        </div>
+        <div class="project-content">
+          <h3>Sistem Informasi Manajemen Pengelolaan dan Penjualan Barang</h3>
+          <p>Sistem Informasi Manajemen Pengelolaan dan Penjualan Barang adalah sebuah aplikasi berbasis web yang dirancang untuk mendukung dan mengotomatisasi proses transaksi penjualan produk di toko.</p>
+          <div class="project-tags">
+            <span>Laravel</span>
+            <span>MySQL</span>
+            <span>Bootstrap</span>
+            <span>Java Script</span>
+          </div>
+          <a href="#" class="btn-code fab fa-github"></a>
+        </div>
+  </section> --> 
+
+    <section id="projects" class="projects-section " class="project-grid social-icons" data-aos="fade-up">
+    <h2 class="section-title">My Projects</h2>
+    <p class="section-subtitle">Here are some of the projects I've worked on throughout my career.</p>
+
+    <div class="project-filters">
+      <button class="filter-btn active">All Projects</button>
+      <!-- <button class="filter-btn">Web Development</button>
+      <button class="filter-btn">Data Projects</button>
+      <button class="filter-btn">DevOps</button> -->
+    </div>
+
+    <div class="project-grid social-icons">
+      <!-- Project 1 -->
+      <div class="project-card">
+        <div class="project-image">
+          <img src="img/epkl.png" alt="E-PKL">
+        </div>
+        <div class="project-content">
+          <h3>Sistem Informasi Management Pengelolaan Praktek Kerja Lapangan Pada SMK Negeri 3 Kudus Berbasis Web Geolocation</h3>
+          <p>Sistem Informasi Management Pengelolaan Praktek Kerja Lapangan pada SMK Negeri 3 Kudus berbasis web geolokasi. Fitur users, siswa, guru, absensi, laporan kegiatan harian, laporan akhir, evaluasi laporan, penilaian guru, penilaian instansi.</p>
+          <div class="project-tags">
+            <span>Laravel</span>
+            <span>MySQL</span>
+            <span>Bootstrap</span>
+          </div>
+          <a href="https://github.com/Captzuzo/epkl" class="btn-code fab fa-github"></a>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card">
+        <div class="project-image">
+          <img src="img/optimuscell.png" alt="Inventory System">
+        </div>
+        <div class="project-content">
+          <h3>Sistem Informasi Manajemen Pengelolaan dan Penjualan Barang</h3>
+          <p>Sistem Informasi Manajemen Pengelolaan dan Penjualan Barang adalah sebuah aplikasi berbasis web yang dirancang untuk mendukung dan mengotomatisasi proses transaksi penjualan produk di toko.</p>
+          <div class="project-tags">
+            <span>Laravel</span>
+            <span>MySQL</span>
+            <span>Bootstrap</span>
+            <span>Java Script</span>
+          </div>
+          <a href="#" class="btn-code fab fa-github"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" data-aos="fade-up">
+    <h2 class="section-title">Kontak</h2>
+    <div style="text-align:center;">
+      <p>Email: deniagus679@gmail.com</p>
+      <p>WhatsApp: +62 851-5650-9625</p>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+
+    // Scrollspy
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll("nav ul li a");
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 130;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute("id");
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${current}`) {
+          link.classList.add("active");
+        }
+      });
+    });
+
+    // Theme Toggle
+    const toggle = document.getElementById("themeToggle");
+    const body = document.body;
+    toggle.addEventListener("click", () => {
+      body.classList.toggle("light-mode");
+      const icon = toggle.querySelector("i");
+      if (body.classList.contains("light-mode")) {
+        icon.classList.remove("fa-moon");
+        icon.classList.add("fa-sun");
+      } else {
+        icon.classList.remove("fa-sun");
+        icon.classList.add("fa-moon");
+      }
+    });
+  </script>
+</body>
+</html>
