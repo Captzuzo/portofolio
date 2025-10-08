@@ -1,239 +1,668 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio - Deni Agus Haryadi</title>
-
-  <!-- Fonts & CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;800&display=swap" rel="stylesheet" />
-  <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
-<link rel="stylesheet" href="assets/css/style.css" />
-
-</head>
-<body>
-  <nav>
-    <!-- <div  class="logo">Haryadi.my.id</div> -->
-    <a href="#" class="logo">
-      <img src="./assets/img/ht.jpeg" alt="Logo" class="logo-img" />
-      <span class="logo-text">Haryadi.my.id</span>
-    </a>
-    <ul>
-      <li><a href="#home" class="active">Home</a></li>
-      <li><a href="#about">Tentang</a></li>
-      <li><a href="#skills">Kemampuan</a></li>
-      <li><a href="#projects">Project</a></li>
-      <li><a href="#contact">Kontak</a></li>
-    </ul>
-    <button id="themeToggle"><i class="fas fa-moon"></i></button>
-  </nav>
-
-  <section class="hero" id="home">
-    <div class="hero-text" data-aos="fade-up">
-      <!-- <div class="hero-img" style="margin-bottom: 20px;">
-<img src="img/deni.jpg" alt="Foto Deni" style="max-width: 300px; width: 200%; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);" />
-      </div> -->
-      
-      <h1>Deni Agus Haryadi</h1>
-      <h3>I'm a <span style="color:#00ffff">Web Developer</span></h3>
-      <p>Saya adalah lulusan Program Studi Sistem Informasi dari Universitas Muria Kudus. Memiliki minat dan keahlian dalam pengembangan aplikasi berbasis web, saya terbiasa menggunakan framework Laravel dan Filament dalam membangun sistem yang efisien, responsif, dan mudah dikembangkan.</p>
-      <div class="social-icons">
-        <a href="#"><i class="fas fa-envelope"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-github"></i></a>
-        <a href="#"><i class="fab fa-linkedin"></i></a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deni Agus Haryadi - Portfolio</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/ht.png" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Background Animation Elements -->
+    <div class="tech-background">
+      <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+        <div class="shape shape-5"></div>
       </div>
-      <!-- <a href="cv-deniagusharyadi-indonesia.html" class="btn-download" download>Download CV Indonesia</a>
-      <a href="cv-deniagusharyadi-inggris.html" class="btn-download" download>Download CV Inggris</a> -->
-      <a href="assets/pdf/cv-deniagusharyadi-indonesia.html" class="btn-download" download>Download CV (ID)</a>
-      <a href="cv-deniagusharyadi-inggris.pdf" class="btn-download" download>Download CV (EN)</a>
-
+      <div class="binary-rain"></div>
+      <div class="grid-lines"></div>
+      <div class="particles-container"></div>
     </div>
-  </section>
 
-  <section id="about" class="section" data-aos="fade-up">
-    <h2 class="section-title">Tentang Saya</h2>
-    <div class="hero-img" style="margin-bottom: 20px;">
-    <img src="img/deni.jpg" alt="Foto Deni" style="max-width: 300px; width: 200%; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);" />
-    </div>
-    <p style="text-align:center; max-width:600px; margin:auto;">
-      Saya adalah <strong style="color:#00ffff">Web Developer</strong> yang fokus membangun web modern, interaktif, dan responsif.
-    </p>
-  </section>
-
-  <section id="skills">
-    <h2 class="section-title">Kemampuan</h2>
-    <div class="skills-grid">
-      <div class="skill-card">
-        <h3>Web Development</h3>
-        <p><strong>Frontend:</strong> Bootstrap</p>
-        <p><strong>Backend:</strong> Laravel</p>
-      </div>
-      <div class="skill-card">
-        <h3>Database</h3>
-        <p><strong>SQL:</strong> MySQL</p>
-      </div>
-      <div class="skill-card">
-        <h3>Administrasi Data</h3>
-        <p><strong>Tools:</strong> Microsoft Office</p>
-      </div>
-      <div class="skill-card">
-        <h3>Lainnya</h3>
-        <p><strong>Version Control:</strong> Git, GitHub</p>
-        <p><strong>Metodologi:</strong> Prototype</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- <section id="projects" data-aos="fade-up">
-    <h2 class="section-title ">Project</h2>
-    <div class="project-image hero-img" style="margin-bottom: 20px;">
-          <img src="img/epkl.png" alt="E-PKL">
+    <!-- Header & Navigation -->
+    <header>
+      <nav class="navbar">
+        <div class="nav-brand">
+          <h2>Deni<span>Agus</span>Haryadi</h2>
         </div>
-        <div class="project-content">
-          <h3>Sistem Informasi Management Pengelolaan Praktek Kerja Lapangan Pada SMK Negeri 3 Kudus Berbasis Web Geolocation</h3>
-          <p>Sistem Informasi Management Pengelolaan Praktek Kerja Lapangan pada SMK Negeri 3 Kudus berbasis web geolokasi. Fitur users, siswa, guru, absensi, laporan kegiatan harian, laporan akhir, evaluasi laporan, penilaian guru, penilaian instansi.</p>
-          <div class="project-tags">
-            <span>Laravel</span>
-            <span>MySQL</span>
-            <span>Bootstrap</span>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="#home" class="nav-link">Beranda</a>
+          </li>
+          <li class="nav-item">
+            <a href="#about" class="nav-link">Profil</a>
+          </li>
+          <li class="nav-item">
+            <a href="#skills" class="nav-link">Skill</a>
+          </li>
+          <li class="nav-item">
+            <a href="#projects" class="nav-link">Project</a>
+          </li>
+        </ul>
+        <div class="theme-toggle">
+          <button id="theme-toggle-btn">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Home Section -->
+      <section id="home" class="section home-section">
+        <div class="container">
+          <div class="home-content">
+            <div class="home-text">
+              <div class="greeting">Halo! Saya</div>
+              <h1 class="home-title">
+                <span class="highlight">DENI AGUS HARYADI</span>
+              </h1>
+              <p class="home-subtitle">
+                Seorang <span class="typing-text"></span>
+              </p>
+              <p class="home-description">
+                Lulusan Sistem Informasi Universitas Muria Kudus yang berfokus
+                pada pengembangan aplikasi web dengan Laravel & Filament. Saya
+                juga memiliki kemampuan teknis dalam instalasi jaringan dan
+                perawatan komputer, baik perangkat lunak maupun perangkat keras.
+              </p>
+              <div class="home-buttons">
+                <a href="#projects" class="btn btn-primary">
+                  <i class="fas fa-rocket"></i>
+                  Lihat Project
+                </a>
+                <a href="#about" class="btn btn-secondary">
+                  <i class="fas fa-user"></i>
+                  Tentang Saya
+                </a>
+              </div>
+              <div class="home-stats">
+                <div class="stat">
+                  <div class="stat-number">1</div>
+                  <div class="stat-label">Tahun</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-number">3</div>
+                  <div class="stat-label">Project Pribadi</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-number">1</div>
+                  <div class="stat-label">Publikasi</div>
+                </div>
+              </div>
+            </div>
+            <div class="home-image">
+              <div class="image-container">
+                <img src="assets/img/deni.jpg" alt="Deni Agus Haryadi" />
+                <div class="image-frame"></div>
+                <div class="tech-badge">
+                  <i class="fab fa-laravel"></i>
+                </div>
+                <div class="tech-badge badge-2">
+                  <i class="fas fa-database"></i>
+                </div>
+                <div class="tech-badge badge-3">
+                  <i class="fab fa-js"></i>
+                </div>
+              </div>
+            </div>
           </div>
-          <a href="https://github.com/Captzuzo/epkl" class="btn-code fab fa-github"></a>
+        </div>
+        <div class="scroll-indicator">
+          <span>Explore More</span>
+          <div class="mouse">
+            <div class="wheel"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="section about-section">
+        <div class="container">
+          <h2 class="section-title">Tentang Saya</h2>
+          <div class="about-content">
+            <div class="about-text">
+              <h3>Profil Profesional</h3>
+              <p>
+                Saya adalah lulusan Program Studi Sistem Informasi dari
+                Universitas Muria Kudus. Memiliki minat dan keahlian dalam
+                pengembangan aplikasi berbasis web, saya terbiasa menggunakan
+                framework Laravel dan Filament dalam membangun sistem yang
+                efisien, responsif, dan mudah dikembangkan. . Saya juga memiliki
+                kemampuan teknis dalam instalasi jaringan dan perawatan
+                komputer, baik perangkat lunak maupun perangkat keras.
+              </p>
+
+              <div class="about-details">
+                <div class="detail-item">
+                  <div class="detail-icon">
+                    <i class="fas fa-user"></i>
+                  </div>
+                  <div class="detail-content">
+                    <span class="detail-label">Nama Lengkap</span>
+                    <span class="detail-value">Deni Agus Haryadi</span>
+                  </div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-icon">
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                  <div class="detail-content">
+                    <span class="detail-label">Email</span>
+                    <span class="detail-value">deniagus679@gmail.com</span>
+                  </div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div class="detail-content">
+                    <span class="detail-label">Lokasi</span>
+                    <span class="detail-value">Kudus, Jawa Tengah</span>
+                  </div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                  </div>
+                  <div class="detail-content">
+                    <span class="detail-label">Pendidikan</span>
+                    <span class="detail-value"
+                      >S1 Sistem Informasi - Universitas Muria Kudus</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Download Section -->
+              <div class="download-section">
+                <button
+                  class="btn btn-primary download-btn"
+                  id="download-cv-btn"
+                >
+                  <span class="btn-text">
+                    <i class="fas fa-download"></i>
+                    Download CV
+                  </span>
+                  <div class="btn-loading">
+                    <div class="loading-spinner"></div>
+                    <span>Mengunduh...</span>
+                  </div>
+                  <div class="btn-success">
+                    <i class="fas fa-check"></i>
+                    <span>Berhasil!</span>
+                  </div>
+                </button>
+
+                <div class="download-progress">
+                  <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                  </div>
+                  <span class="progress-text">0%</span>
+                </div>
+
+                <div class="download-info">
+                  <div class="file-info">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>cv-deni.pdf • 2.1 MB</span>
+                  </div>
+                  <!-- <div class="download-stats">
+                    <i class="fas fa-download"></i>
+                    <span id="download-count">128 downloads</span>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+
+            <div class="about-stats">
+              <div class="stat-card">
+                <div class="stat-icon">
+                  <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="stat-info">
+                  <h3 class="stat-number">1</h3>
+                  <p class="stat-text">Publikasi Ilmiah</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Publication Section -->
+          <div class="publication-section">
+            <h3 class="publication-title">
+              <i class="fas fa-book-open"></i>
+              Publikasi Ilmiah
+            </h3>
+
+            <div class="publication-card">
+              <div class="publication-badge">Terbit 2024</div>
+              <div class="publication-header">
+                <h4 class="publication-journal">
+                  Jurnal Nasional Konferensi Teknologi Informasi (JNKTI)
+                </h4>
+                <span class="publication-volume">Volume 8, Issue 1</span>
+              </div>
+
+              <h5 class="publication-topic">
+                SISTEM INFORMASI MANAJEMEN PENGELOLAAN PRAKTEK KERJA LAPANGAN
+                BERBASIS WEB GEOLOCATION
+              </h5>
+
+              <div class="publication-authors">
+                <span class="author main-author">Deni Agus Haryadi</span>,
+                <span class="author">Fajar Nugraha</span>,
+                <span class="author">Diana Laily Fithri</span>
+              </div>
+
+              <div class="publication-doi">
+                <i class="fas fa-link"></i>
+                <a
+                  href="https://doi.org/10.32672/jnkti.v8i1.8782"
+                  target="_blank"
+                  class="doi-link"
+                >
+                  https://doi.org/10.32672/jnkti.v8i1.8782
+                </a>
+              </div>
+
+              <div class="publication-abstract">
+                <p>
+                  Penelitian ini mengembangkan sistem informasi manajemen untuk
+                  pengelolaan Praktek Kerja Lapangan (PKL) berbasis web dengan
+                  integrasi geolocation. Sistem ini membantu dalam monitoring
+                  dan evaluasi mahasiswa selama melaksanakan PKL.
+                </p>
+              </div>
+
+              <div class="publication-keywords">
+                <span class="keyword">Sistem Informasi</span>
+                <span class="keyword">Web Geolocation</span>
+                <span class="keyword">Laravel</span>
+                <span class="keyword">PKL Management</span>
+                <span class="keyword">PHP</span>
+              </div>
+
+              <div class="publication-actions">
+                <a
+                  href="https://doi.org/10.32672/jnkti.v8i1.8782"
+                  target="_blank"
+                  class="btn btn-primary btn-sm"
+                >
+                  <i class="fas fa-external-link-alt"></i>
+                  Baca Jurnal
+                </a>
+                <button class="btn btn-outline btn-sm" id="cite-publication">
+                  <i class="fas fa-quote-right"></i>
+                  Kutip
+                </button>
+                <button class="btn btn-outline btn-sm" id="share-publication">
+                  <i class="fas fa-share"></i>
+                  Bagikan
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section id="skills" class="section skills-section">
+        <div class="container">
+          <h2 class="section-title">Keahlian Teknis</h2>
+          <p class="section-subtitle">
+            Teknologi dan tools yang saya kuasai dalam pengembangan software
+          </p>
+
+          <div class="skills-grid">
+            <div class="skill-category">
+              <h3 class="category-title">
+                <i class="fab fa-laravel"></i>
+                Backend Development
+              </h3>
+              <div class="skills-list">
+                <div class="skill-item">
+                  <div class="skill-header">
+                    <div class="skill-name">
+                      <i class="fab fa-laravel"></i>
+                      Laravel
+                    </div>
+                    <span class="skill-level">Expert</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress" data-width="95"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-header">
+                    <div class="skill-name">
+                      <i class="fas fa-fire"></i>
+                      Filament
+                    </div>
+                    <span class="skill-level">Expert</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress" data-width="90"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-header">
+                    <div class="skill-name">
+                      <i class="fab fa-php"></i>
+                      PHP
+                    </div>
+                    <span class="skill-level">Advanced</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress" data-width="88"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-header">
+                    <div class="skill-name">
+                      <i class="fas fa-database"></i>
+                      MySQL
+                    </div>
+                    <span class="skill-level">Advanced</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress" data-width="85"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="skill-category">
+              <h3 class="category-title">
+                <i class="fab fa-js"></i>
+                Frontend Development
+              </h3>
+              <div class="skills-list">
+                <div class="skill-item">
+                  <div class="skill-header">
+                    <div class="skill-name">
+                      <i class="fab fa-html5"></i>
+                      HTML/CSS
+                    </div>
+                    <span class="skill-level">Expert</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress" data-width="95"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-header">
+                    <div class="skill-name">
+                      <i class="fab fa-js"></i>
+                      JavaScript
+                    </div>
+                    <span class="skill-level">Advanced</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress" data-width="85"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-header">
+                    <div class="skill-name">
+                      <i class="fab fa-bootstrap"></i>
+                      Bootstrap
+                    </div>
+                    <span class="skill-level">Advanced</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress" data-width="88"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="skill-category">
+              <h3 class="category-title">
+                <i class="fas fa-tools"></i>
+                Tools & Others
+              </h3>
+              <div class="skills-list">
+                <div class="skill-item">
+                  <div class="skill-header">
+                    <div class="skill-name">
+                      <i class="fab fa-git"></i>
+                      Git & GitHub
+                    </div>
+                    <span class="skill-level">Expert</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress" data-width="90"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-header">
+                    <div class="skill-name">
+                      <i class="fas fa-server"></i>
+                      Apache/Nginx
+                    </div>
+                    <span class="skill-level">Intermediate</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress" data-width="78"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-header">
+                    <div class="skill-name">
+                      <i class="fas fa-file-excel"></i>
+                      Microsoft Office
+                    </div>
+                    <span class="skill-level">Advanced</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress" data-width="82"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="section projects-section">
+        <div class="container">
+          <h2 class="section-title">Project Portfolio</h2>
+          <p class="section-subtitle">
+            Beberapa project yang telah saya kembangkan menggunakan teknologi
+            modern
+          </p>
+
+          <div class="projects-grid" id="projects-container">
+            <!-- Projects will be loaded from GitHub API -->
+            <div class="project-card skeleton">
+              <div class="project-image">
+                <div class="skeleton-image"></div>
+              </div>
+              <div class="project-content">
+                <div class="skeleton-text"></div>
+                <div class="skeleton-text short"></div>
+                <div class="project-tech">
+                  <span class="skeleton-tag"></span>
+                  <span class="skeleton-tag"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-card skeleton">
+              <div class="project-image">
+                <div class="skeleton-image"></div>
+              </div>
+              <div class="project-content">
+                <div class="skeleton-text"></div>
+                <div class="skeleton-text short"></div>
+                <div class="project-tech">
+                  <span class="skeleton-tag"></span>
+                  <span class="skeleton-tag"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-card skeleton">
+              <div class="project-image">
+                <div class="skeleton-image"></div>
+              </div>
+              <div class="project-content">
+                <div class="skeleton-text"></div>
+                <div class="skeleton-text short"></div>
+                <div class="project-tech">
+                  <span class="skeleton-tag"></span>
+                  <span class="skeleton-tag"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="projects-more">
+            <a
+              href="https://github.com/Captzuzo"
+              target="_blank"
+              class="btn btn-outline"
+            >
+              <i class="fab fa-github"></i>
+              Lihat Semua Project di GitHub
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-info">
+            <h3>Deni<span>Agus</span>Haryadi</h3>
+            <p>
+              Web Developer & Laravel Specialist yang berfokus pada pembuatan
+              sistem yang efisien, responsif, dan mudah dikembangkan.
+            </p>
+            <div class="social-links">
+              <a href="https://github.com/Captzuzo" target="_blank">
+                <i class="fab fa-github"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/deni-agus-haryadi-136048190/"
+                target="_blank"
+              >
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/_deniharyadi16/"
+                target="_blank"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="mailto:deniagus679@gmail.com">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Navigasi</h4>
+            <ul>
+              <li><a href="#home">Beranda</a></li>
+              <li><a href="#about">Profil</a></li>
+              <li><a href="#skills">Skill</a></li>
+              <li><a href="#projects">Project</a></li>
+            </ul>
+          </div>
+          <div class="footer-contact">
+            <h4>Kontak</h4>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <span>deniagus679@gmail.com</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <span>+62 851 5650 9625</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Kab. Kudus, Jawa Tengah</span>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; <span id="current-year">2024</span> Made In<i
+              class="fas fa-heart"
+            ></i>
+            Deni Agus Haryadi.
+          </p>
         </div>
       </div>
+    </footer>
 
-      <!-Project 2 -->
-      <!-- <div class="project-card">
-        <div class="project-image">
-          <img src="img/optimuscell.png" alt="Inventory System">
+    <!-- Modals -->
+    <div class="download-modal" id="download-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Download CV</h3>
+          <button class="modal-close" id="modal-close">
+            <i class="fas fa-times"></i>
+          </button>
         </div>
-        <div class="project-content">
-          <h3>Sistem Informasi Manajemen Pengelolaan dan Penjualan Barang</h3>
-          <p>Sistem Informasi Manajemen Pengelolaan dan Penjualan Barang adalah sebuah aplikasi berbasis web yang dirancang untuk mendukung dan mengotomatisasi proses transaksi penjualan produk di toko.</p>
-          <div class="project-tags">
-            <span>Laravel</span>
-            <span>MySQL</span>
-            <span>Bootstrap</span>
-            <span>Java Script</span>
+        <div class="modal-body">
+          <div class="modal-icon">
+            <i class="fas fa-file-download"></i>
           </div>
-          <a href="#" class="btn-code fab fa-github"></a>
+          <p>CV Anda akan segera diunduh. Terima kasih atas ketertarikannya!</p>
         </div>
-  </section> --> 
-
-    <section id="projects" class="projects-section " class="project-grid social-icons" data-aos="fade-up">
-    <h2 class="section-title">My Projects</h2>
-    <p class="section-subtitle">Here are some of the projects I've worked on throughout my career.</p>
-
-    <div class="project-filters">
-      <button class="filter-btn active">All Projects</button>
-      <!-- <button class="filter-btn">Web Development</button>
-      <button class="filter-btn">Data Projects</button>
-      <button class="filter-btn">DevOps</button> -->
-    </div>
-
-    <div class="project-grid social-icons">
-      <!-- Project 1 -->
-      <div class="project-card">
-        <div class="project-image">
-          <img src="img/epkl.png" alt="E-PKL">
-        </div>
-        <div class="project-content">
-          <h3>Sistem Informasi Management Pengelolaan Praktek Kerja Lapangan Pada SMK Negeri 3 Kudus Berbasis Web Geolocation</h3>
-          <p>Sistem Informasi Management Pengelolaan Praktek Kerja Lapangan pada SMK Negeri 3 Kudus berbasis web geolokasi. Fitur users, siswa, guru, absensi, laporan kegiatan harian, laporan akhir, evaluasi laporan, penilaian guru, penilaian instansi.</p>
-          <div class="project-tags">
-            <span>Laravel</span>
-            <span>MySQL</span>
-            <span>Bootstrap</span>
-          </div>
-          <a href="https://github.com/Captzuzo/epkl" target="_blank" class="btn-code fab fa-github"></a>
-        </div>
-      </div>
-
-      <!-- Project 2 -->
-      <div class="project-card">
-        <div class="project-image">
-          <img src="img/optimuscell.png" alt="Inventory System">
-        </div>
-        <div class="project-content">
-          <h3>Sistem Informasi Manajemen Pengelolaan dan Penjualan Barang</h3>
-          <p>Sistem Informasi Manajemen Pengelolaan dan Penjualan Barang adalah sebuah aplikasi berbasis web yang dirancang untuk mendukung dan mengotomatisasi proses transaksi penjualan produk di toko.</p>
-          <div class="project-tags">
-            <span>Laravel</span>
-            <span>MySQL</span>
-            <span>Bootstrap</span>
-            <span>Java Script</span>
-          </div>
-          <a href="https://github.com/Captzuzo/SIM-Pengelolaan-Barang" target="_blank" class="btn-code fab fa-github"></a>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" id="modal-cancel">Batal</button>
+          <button class="btn btn-primary" id="modal-confirm">
+            Download Sekarang
+          </button>
         </div>
       </div>
     </div>
-  </section>
 
-  <section id="contact" data-aos="fade-up">
-    <h2 class="section-title">Kontak</h2>
-    <div style="text-align:center;">
-      <p>Email: deniagus679@gmail.com</p>
-      <p>WhatsApp: +62 851-5650-9625</p>
+    <div class="publication-modal" id="publication-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Kutip Publikasi</h3>
+          <button class="modal-close" id="publication-modal-close">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="citation-format">
+            <h4>Format APA:</h4>
+            <div class="citation-text" id="apa-citation">
+              Haryadi, D. A., Pembimbing1, D., & Pembimbing2, D. (2024). Sistem
+              Informasi Manajemen Pengelolaan Praktek Kerja Lapangan Berbasis
+              Web Geolocation.
+              <em>Jurnal Nasional Konferensi Teknologi Informasi</em>, 8(1).
+              https://doi.org/10.32672/jnkti.v8i1.8782
+            </div>
+            <button class="btn btn-primary btn-sm" id="copy-apa">
+              <i class="fas fa-copy"></i>
+              Salin Kutipan
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
 
-  <!-- Scripts -->
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration: 800, once: true });
-
-    // Scrollspy
-    const sections = document.querySelectorAll("section[id]");
-    const navLinks = document.querySelectorAll("nav ul li a");
-    window.addEventListener("scroll", () => {
-      let current = "";
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 130;
-        if (pageYOffset >= sectionTop) {
-          current = section.getAttribute("id");
-        }
-      });
-      navLinks.forEach(link => {
-        link.classList.remove("active");
-        if (link.getAttribute("href") === `#${current}`) {
-          link.classList.add("active");
-        }
-      });
-    });
-
-    // Theme Toggle
-    const toggle = document.getElementById("themeToggle");
-    const body = document.body;
-    toggle.addEventListener("click", () => {
-      body.classList.toggle("light-mode");
-      const icon = toggle.querySelector("i");
-      if (body.classList.contains("light-mode")) {
-        icon.classList.remove("fa-moon");
-        icon.classList.add("fa-sun");
-      } else {
-        icon.classList.remove("fa-sun");
-        icon.classList.add("fa-moon");
-      }
-    });
-  </script>
-
-  <script>
-  // Deteksi arah scroll untuk menyembunyikan atau menampilkan navbar
-  let lastScroll = window.scrollY;
-  const nav = document.querySelector("nav");
-
-  window.addEventListener("scroll", () => {
-    const currentScroll = window.scrollY;
-
-    if (currentScroll > lastScroll && currentScroll > 80) {
-      nav.classList.add("hide-nav");
-    } else {
-      nav.classList.remove("hide-nav");
-    }
-
-    lastScroll = currentScroll;
-  });
-</script>
-</body>
+    <script src="assets/js/script.js"></script>
+  </body>
 </html>
