@@ -715,5 +715,11 @@
     </div>
 
     <script src="assets/js/script.js"></script>
+    <script>
+      const current = window.location.pathname.split("/").pop();
+      if (current === "dokumentasi.html") {
+        document.getElementById("navDokumentasi").classList.add("active");
+      }
+    </script>
   </body>
 </html>
