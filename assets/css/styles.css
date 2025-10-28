@@ -882,7 +882,7 @@ header {
 }
 
 /* ===== SKILLS SECTION ===== */
-.skills-grid {
+/* .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: var(--space-xl);
@@ -970,6 +970,45 @@ header {
   border-radius: 4px;
   width: 0;
   transition: width 1.5s ease-in-out;
+} */
+/* Ubah grid menjadi horizontal scroll */
+.skills-grid {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: var(--space-xl);
+  padding-bottom: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) transparent;
+}
+
+/* Supaya setiap kartu tetap rapi saat di-swipe */
+.skill-category {
+  flex: 0 0 350px; /* ukuran tiap kartu */
+  scroll-snap-align: start;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-normal);
+}
+
+/* Hilangkan scrollbar di browser berbasis WebKit (Chrome, Edge, Safari) */
+.skills-grid::-webkit-scrollbar {
+  height: 8px;
+}
+.skills-grid::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 10px;
+}
+.skills-grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Tambahan efek hover */
+.skill-category:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
 }
 
 /* ===== PROJECTS SECTION ===== */

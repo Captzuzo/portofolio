@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dokumentasi Haryadi Framework — Lengkap</title>
+    <meta
+      name="description"
+      content="Dokumentasi lengkap Haryadi Framework: instalasi, arsitektur, panduan fitur, CLI, deployment, best practice."
+    />
+
+    <!-- Tailwind CDN (untuk tampilan cepat & profesional) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #0f172a;
+        --card: #0b1220;
+        --muted: #94a3b8;
+        --accent: #7c3aed;
+      }
+      body {
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+          Roboto, "Helvetica Neue", Arial;
+        background: linear-gradient(180deg, #071035 0%, #061325 100%);
+        color: #e6eef8;
+      }
+      a {
+        color: var(--accent);
+      }
+      pre {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono",
+          monospace;
+        background: rgba(255, 255, 255, 0.03);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        overflow: auto;
+      }
+      .sidebar {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(6px);
+      }
+      .kbd {
+        background: rgba(255, 255, 255, 0.04);
+        padding: 0.15rem 0.4rem;
+        border-radius: 0.35rem;
+        font-weight: 600;
+      }
+      .badge {
+        background: rgba(124, 58, 237, 0.12);
+        color: var(--accent);
+        padding: 0.15rem 0.45rem;
+        border-radius: 999px;
+        font-weight: 600;
+      }
+      @media (max-width: 1024px) {
+        .sidebar {
+          position: relative;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="min-h-screen flex">
+      <!-- SIDEBAR -->
+      <aside class="w-72 sidebar p-6 hidden lg:block">
+        <div class="mb-6">
+          <h1 class="text-2xl font-extrabold">Haryadi Framework</h1>
+          <p class="text-sm text-muted mt-1">
+            Dokumentasi resmi — ringkas & praktis
+          </p>
+        </div>
+
+        <nav class="space-y-2 text-sm">
+          <a href="#overview" class="block py-2 px-3 rounded hover:bg-white/3"
+            >Overview</a
+          >
+          <a
+            href="#requirements"
+            class="block py-2 px-3 rounded hover:bg-white/3"
+            >Persyaratan</a
+          >
+          <a
+            href="#installation"
+            class="block py-2 px-3 rounded hover:bg-white/3"
+            >Instalasi</a
+          >
+          <a href="#structure" class="block py-2 px-3 rounded hover:bg-white/3"
+            >Struktur Proyek</a
+          >
+          <a href="#routing" class="block py-2 px-3 rounded hover:bg-white/3"
+            >Routing</a
+          >
+          <a
+            href="#controllers"
+            class="block py-2 px-3 rounded hover:bg-white/3"
+            >Controllers</a
+          >
+          <a href="#models" class="block py-2 px-3 rounded hover:bg-white/3"
+            >Models & ORM</a
+          >
+          <a href="#views" class="block py-2 px-3 rounded hover:bg-white/3"
+            >Views (templating)</a
+          >
+          <a href="#cli" class="block py-2 px-3 rounded hover:bg-white/3"
+            >CLI — php haryadi</a
+          >
+          <a href="#migrations" class="block py-2 px-3 rounded hover:bg-white/3"
+            >Migrations & Seeders</a
+          >
+          <a href="#auth" class="block py-2 px-3 rounded hover:bg-white/3"
+            >Auth & Permission</a
+          >
+          <a href="#deployment" class="block py-2 px-3 rounded hover:bg-white/3"
+            >Deployment</a
+          >
+          <a
+            href="#troubleshoot"
+            class="block py-2 px-3 rounded hover:bg-white/3"
+            >Troubleshooting</a
+          >
+          <a href="#contribute" class="block py-2 px-3 rounded hover:bg-white/3"
+            >Contribute</a
+          >
+        </nav>
+
+        <div class="mt-6 text-xs text-muted">
+          <div class="flex items-center gap-2">
+            <span class="badge">v1.0</span><span>Stabil</span>
+          </div>
+          <p class="mt-3">
+            Dokumentasi ini menjelaskan cara menggunakan Haryadi Framework —
+            kerangka kerja minimalis terinspirasi Laravel untuk belajar & proyek
+            kecil.
+          </p>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main class="flex-1 p-8">
+        <header class="flex items-start justify-between">
+          <div>
+            <h2 id="overview" class="text-3xl font-bold">Overview</h2>
+            <p class="text-muted mt-1">
+              Haryadi Framework adalah micro-MVC PHP yang memadukan filosofi
+              Laravel (struktur project, service providers, command line) dengan
+              footprint ringan.
+            </p>
+          </div>
+          <div class="text-right">
+            <div class="text-sm text-muted">Format</div>
+            <div class="mt-1">
+              <span class="kbd">HTML</span> <span class="ml-2 kbd">CSS</span>
+              <span class="ml-2 kbd">PHP</span>
+            </div>
+          </div>
+        </header>
+
+        <article class="mt-8 space-y-8">
+          <!-- Requirements -->
+          <section id="requirements">
+            <h3 class="text-2xl font-semibold">Persyaratan</h3>
+            <ul class="list-disc ml-6 mt-3 text-sm text-muted">
+              <li>PHP >= 8.1</li>
+              <li>Composer</li>
+              <li>Extension: PDO, mbstring, openssl, tokenizer, json</li>
+              <li>Webserver: Apache/Nginx atau PHP built-in</li>
+              <li>MySQL / MariaDB (direkomendasikan) atau SQLite untuk dev</li>
+            </ul>
+          </section>
+
+          <!-- Installation -->
+          <section id="installation">
+            <h3 class="text-2xl font-semibold">Instalasi</h3>
+            <p class="text-muted mt-2">
+              Mulai dari repository kosong atau composer package.
+            </p>
+            <div class="mt-4">
+              <div class="text-xs text-muted mb-2">Dari Git</div>
+              <pre><code>git clone https://github.com/yourname/haryadi.git
+cd haryadi
+composer install
+cp .env.example .env
+php -S localhost:8000 -t public</code></pre>
+
+              <div class="text-xs text-muted mt-4 mb-2">
+                Dari Composer (package)
+              </div>
+              <pre><code>composer create-project yourname/haryadi myapp
+cd myapp
+composer install
+php haryadi layanan</code></pre>
+            </div>
+          </section>
+
+          <!-- Project Structure -->
+          <section id="structure">
+            <h3 class="text-2xl font-semibold">Struktur Proyek</h3>
+            <p class="text-muted mt-2">Ringkasan direktori standar:</p>
+            <pre><code>haryadi/
+├─ app/
+│  ├─ Controllers/
+│  ├─ Models/
+│  ├─ Middleware/
+│  ├─ Providers/
+│  └─ Services/
+├─ core/
+│  ├─ Router.php
+│  ├─ View.php
+│  ├─ Database.php
+│  └─ ...
+├─ public/
+│  └─ index.php
+├─ resources/views/
+├─ database/
+│  ├─ migrations/
+│  └─ seeders/
+├─ routes.php
+└─ haryadi (CLI entry)</code></pre>
+          </section>
+
+          <!-- Routing -->
+          <section id="routing">
+            <h3 class="text-2xl font-semibold">Routing</h3>
+            <p class="text-muted mt-2">
+              Routing bersifat sederhana: static routes dan closure/controller
+              mapping.
+            </p>
+            <pre><code>// routes.php
+use App\Controllers\WelcomeController;
+
+Router::get('/', [WelcomeController::class, 'index'])->name('home');
+Router::get('/users', [UserController::class, 'index']);
+Router::post('/users', [UserController::class, 'store']);</code></pre>
+
+            <p class="mt-2 text-sm text-muted">
+              Router mendukung methods: <code>get</code>, <code>post</code>,
+              <code>put</code>, <code>patch</code>, <code>delete</code>, dan
+              route names.
+            </p>
+          </section>
+
+          <!-- Controllers -->
+          <section id="controllers">
+            <h3 class="text-2xl font-semibold">Controllers</h3>
+            <p class="text-muted mt-2">
+              Controller standard mirip Laravel: kelas dengan method yang
+              menerima request, mengembalikan view/JSON.
+            </p>
+            <pre><code>namespace App\Controllers;
+
+use Haryadi\Core\Controller;
+
+class UserController extends Controller
+{
+    public function index()
+    {
+        $users = \App\Models\User::all();
+        return view('users.index', compact('users'));
+    }
+
+    public function store()
+    {
+        $data = request()->all();
+        \App\Models\User::create($data);
+        return redirect('/users');
+    }
+}
+</code></pre>
+          </section>
+
+          <!-- Models -->
+          <section id="models">
+            <h3 class="text-2xl font-semibold">Models & ORM</h3>
+            <p class="text-muted mt-2">
+              Model extend <code>Haryadi\Core\Model</code>. Mendukung
+              Eloquent-like API: <code>all(), find(), create(), where()</code>.
+            </p>
+            <pre><code>namespace App\Models;
+
+use Haryadi\Core\Model;
+
+class User extends Model
+{
+    protected $table = 'users';
+    protected $fillable = ['name','email','password'];
+}
+</code></pre>
+          </section>
+
+          <!-- Views -->
+          <section id="views">
+            <h3 class="text-2xl font-semibold">Views (Templating)</h3>
+            <p class="text-muted mt-2">
+              Sistem view ringan: file PHP di
+              <code>resources/views</code> dengan helper <code>view()</code>.
+            </p>
+            <pre><code>// resources/views/users/index.php
+&lt;?php foreach($users as $u): ?&gt;
+  &lt;div&gt;&lt;?= e($u->name) ?&gt;&lt;/div&gt;
+&lt;?php endforeach; ?&gt;</code></pre>
+            <p class="mt-2 text-sm text-muted">
+              Tersedia helper: <code>view()</code>, <code>redirect()</code>,
+              <code>e()</code> (escape).
+            </p>
+          </section>
+
+          <!-- Middleware -->
+          <section id="middleware">
+            <h3 class="text-2xl font-semibold">Middleware</h3>
+            <p class="text-muted mt-2">
+              Middleware dapat didefinisikan di <code>app/Middleware</code> dan
+              diregistrasi di provider router.
+            </p>
+            <pre><code>// app/Middleware/AuthMiddleware.php
+class AuthMiddleware
+{
+    public function handle($request, $next)
+    {
+        if(empty($_SESSION['user'])){
+            return redirect('/login');
+        }
+        return $next($request);
+    }
+}
+</code></pre>
+          </section>
+
+          <!-- CLI -->
+          <section id="cli">
+            <h3 class="text-2xl font-semibold">CLI — php haryadi</h3>
+            <p class="text-muted mt-2">
+              CLI tool sederhana untuk menjalankan server, migrasi, make
+              commands.
+            </p>
+            <pre><code>php haryadi bantuan
+php haryadi layanan        # serve (built-in PHP server)
+php haryadi make:controller UserController
+php haryadi migrate</code></pre>
+
+            <p class="mt-2 text-sm text-muted">Contoh output help:</p>
+            <pre><code>Commands:
+  layanan       Serve application (php -S)
+  migrate       Run database migrations
+  make:controller  Create new controller
+  bantuan       Show help</code></pre>
+          </section>
+
+          <!-- Migrations -->
+          <section id="migrations">
+            <h3 class="text-2xl font-semibold">Migrations & Seeders</h3>
+            <p class="text-muted mt-2">
+              Migrations mirip Laravel: file PHP di
+              <code>database/migrations</code> dengan class yang mengimplement
+              <code>up()</code> dan <code>down()</code>.
+            </p>
+            <pre><code>class CreateUsersTable {
+  public function up(){
+    // buat table users via DB schema
+  }
+  public function down(){
+    // drop table
+  }
+}
+</code></pre>
+          </section>
+
+          <!-- Auth -->
+          <section id="auth">
+            <h3 class="text-2xl font-semibold">
+              Authentication & Authorization
+            </h3>
+            <p class="text-muted mt-2">
+              Kerangka menyediakan helper auth sederhana:
+              <code>auth()->user()</code>, <code>guest()</code>, dan trait
+              role-based basic.
+            </p>
+            <pre><code>// contoh register
+$user = App\Models\User::create([ 'name'=>'Deni', 'email'=>'d@example.com', 'password'=>password_hash('secret', PASSWORD_DEFAULT) ]);
+
+// middleware pengecekan role
+if(!in_array('admin', $user->roles ?? [])) abort(403);
+</code></pre>
+          </section>
+
+          <!-- Configuration -->
+          <section id="configuration">
+            <h3 class="text-2xl font-semibold">Configuration & Environment</h3>
+            <p class="text-muted mt-2">
+              Gunakan file <code>.env</code> untuk konfigurasi. Config di
+              <code>config/</code> sebagai array PHP.
+            </p>
+            <pre><code>// .env
+APP_ENV=local
+DB_HOST=127.0.0.1
+DB_DATABASE=haryadi
+DB_USERNAME=root
+DB_PASSWORD=
+</code></pre>
+          </section>
+
+          <!-- Error Handling -->
+          <section id="errors">
+            <h3 class="text-2xl font-semibold">Error Handling & Debug</h3>
+            <p class="text-muted mt-2">
+              Core menyediakan handler error yang bisa ditoggle via
+              <code>APP_DEBUG</code>. Untuk page error khusus, letakkan file di
+              <code>resources/errors</code>.
+            </p>
+            <pre><code>// contoh menangani exception
+try{
+  // kode
+}catch(\Exception $e){
+  if(config('app.debug')){
+    dd($e->getMessage(), $e->getTrace());
+  }
+  view('errors.500');
+}
+</code></pre>
+          </section>
+
+          <!-- Testing -->
+          <section id="testing">
+            <h3 class="text-2xl font-semibold">Testing</h3>
+            <p class="text-muted mt-2">
+              Tidak terikat ke framework testing tertentu. Direkomendasikan
+              menggunakan PHPUnit.
+            </p>
+            <pre><code>composer require --dev phpunit/phpunit
+./vendor/bin/phpunit --configuration phpunit.xml</code></pre>
+          </section>
+
+          <!-- Deployment -->
+          <section id="deployment">
+            <h3 class="text-2xl font-semibold">Deployment</h3>
+            <p class="text-muted mt-2">Langkah umum:</p>
+            <ol class="list-decimal ml-6 text-sm text-muted mt-2 space-y-1">
+              <li>Set environment production pada file <code>.env</code></li>
+              <li>Upload kode ke server (Git/FTP)</li>
+              <li>
+                Install composer:
+                <code>composer install --no-dev --optimize-autoloader</code>
+              </li>
+              <li>
+                Jalankan migrasi: <code>php haryadi migrate --force</code>
+              </li>
+              <li>Set webroot ke folder <code>public/</code></li>
+              <li>Pastikan permission storage & uploads writable</li>
+            </ol>
+          </section>
+
+          <!-- Troubleshooting -->
+          <section id="troubleshoot">
+            <h3 class="text-2xl font-semibold">Troubleshooting & FAQ</h3>
+            <div class="mt-3 space-y-3 text-sm text-muted">
+              <div>
+                <strong>Error Composer autoload (PSR-4)</strong>
+                <p class="mt-1">
+                  Pastikan namespace & path sesuai composer.json; jalankan
+                  <code>composer dump-autoload -o</code>.
+                </p>
+              </div>
+              <div>
+                <strong>View not found</strong>
+                <p class="mt-1">
+                  Periksa path file view di <code>resources/views</code> dan
+                  helper <code>view('path.name')</code> menggunakan tanda titik.
+                </p>
+              </div>
+              <div>
+                <strong>Database connection</strong>
+                <p class="mt-1">
+                  Cek kredensial di <code>.env</code> dan coba
+                  <code>php -r "new PDO('mysql:host=...')"</code> untuk quick
+                  test.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Contribute -->
+          <section id="contribute">
+            <h3 class="text-2xl font-semibold">Contribute & Development</h3>
+            <p class="text-muted mt-2">Panduan singkat untuk kontributor:</p>
+            <ul class="ml-6 text-sm text-muted list-disc">
+              <li>Fork repo, buat branch feature/<em>nama</em></li>
+              <li>Tulis test untuk fitur baru</li>
+              <li>Submit PR dengan deskripsi perubahan</li>
+              <li>Ikuti code style PSR-12</li>
+            </ul>
+          </section>
+
+          <!-- Appendix: Commands & Shortcuts -->
+          <section id="appendix">
+            <h3 class="text-2xl font-semibold">Appendix — Perintah Penting</h3>
+            <div class="mt-3 grid grid-cols-1 lg:grid-cols-2 gap-4">
+              <div>
+                <h4 class="font-semibold">Server & CLI</h4>
+                <pre><code>php haryadi layanan       # Jalankan built-in server
+php haryadi bantuan        # Tampilkan bantuan
+php haryadi make:controller NameController
+php haryadi make:model Name
+php haryadi migrate
+php haryadi db:seed</code></pre>
+              </div>
+              <div>
+                <h4 class="font-semibold">Pemeliharaan</h4>
+                <pre><code>composer install --no-dev --optimize-autoloader
+php haryadi migrate --force
+chown -R www-data:www-data storage/ public/uploads
+</code></pre>
+              </div>
+            </div>
+          </section>
+
+          <!-- Footer -->
+          <footer class="mt-8 pt-6 border-t border-white/6 text-sm text-muted">
+            <div class="flex justify-between items-center">
+              <div>
+                © 2025 Haryadi Framework • Dokumentasi ini dilisensikan MIT.
+              </div>
+              <div>
+                Butuh tambahan? <a href="#contribute">Contribute</a> atau buat
+                issue di GitHub.
+              </div>
+            </div>
+          </footer>
+        </article>
+      </main>
+    </div>
+  </body>
+</html>
