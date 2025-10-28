@@ -46,9 +46,12 @@
             <a href="#projects" class="nav-link">Project</a>
           </li>
           <li class="nav-item">
-            <a href="/dokumentasi.html" class="nav-link"
-              >Dokumentasi Haryadi Framework</a
+            <a
+              href="dokumentasi.html"
+              class="nav-link <?= ($_SERVER['REQUEST_URI'] === '/dokumentasi.html') ? 'active' : '' ?>"
             >
+              Dokumentasi
+            </a>
           </li>
         </ul>
         <div class="theme-toggle">
