@@ -29,7 +29,7 @@
     <header class="header-custom">
       <nav class="navbar">
         <div class="nav-brand">
-          <h2>Deni<span>Agus</span>Haryadi</h2>
+          <h2><span>Haryadi</span>Tech</h2>
         </div>
         <ul class="nav-menu">
           <li class="nav-item">
@@ -99,46 +99,46 @@
 
         <article class="mt-8 space-y-8">
           <!-- Requirements -->
-          <section id="requirements">
-            <h3 class="text-2xl font-semibold">Persyaratan</h3>
-            <ul class="list-disc ml-6 mt-3 text-sm text-muted">
+          <section id="requirements" class="docs-section">
+            <h3 class="section-title"># Persyaratan</h3>
+            <ul class="list-disc text-muted">
               <li>PHP >= 8.1</li>
               <li>Composer</li>
-              <li>Extension: PDO, mbstring, openssl, tokenizer, json</li>
-              <li>Webserver: Apache/Nginx atau PHP built-in</li>
-              <li>MySQL / MariaDB (direkomendasikan) atau SQLite untuk dev</li>
+              <li>Laragon dan Xampp</li>
             </ul>
           </section>
 
           <!-- Installation -->
-          <section id="installation">
-            <h3 class="text-2xl font-semibold">Instalasi</h3>
-            <p class="text-muted mt-2">
-              Mulai dari repository kosong atau composer package.
-            </p>
+          <section id="installation" class="docs-section">
+            <h3 class="section-title"># Instalasi</h3>
+            <p class="text-muted">Mulai dari repository kosong.</p>
             <div class="mt-4">
               <div class="text-xs text-muted mb-2">Dari Git</div>
-              <pre><code>git clone https://github.com/Captzuzo/haryadi.git
+              <div class="code-block">
+                <pre><code>git clone https://github.com/Captzuzo/haryadi.git
 cd haryadi
 composer install
 cp .env.example .env
-php -S localhost:8000 -t public</code></pre>
+php haryadi layanan</code>
+              </pre>
 
-              <!-- <div class="text-xs text-muted mt-4 mb-2">
+                <!-- <div class="text-xs text-muted mt-4 mb-2">
                 Dari Composer (package)
               </div>
               <pre><code>composer create-project yourname/haryadi myapp
 cd myapp
 composer install
 php haryadi layanan</code></pre> -->
+              </div>
             </div>
           </section>
 
           <!-- Project Structure -->
-          <section id="structure">
-            <h3 class="text-2xl font-semibold">Struktur Proyek</h3>
+          <section id="structure" class="docs-section">
+            <h3 class="section-title"># Struktur Proyek</h3>
             <p class="text-muted mt-2">Ringkasan direktori standar:</p>
-            <pre><code>haryadi/
+            <div class="code-block">
+              <pre><code >haryadi/
 ├─ app/
 │  ├─ Controllers/
 │  ├─ Models/
@@ -152,43 +152,237 @@ php haryadi layanan</code></pre> -->
 │  └─ ...
 ├─ public/
 │  └─ index.php
-├─ resources/views/
+├─ resources/
+│  └─views/
+│     └─welcome.haryadi.php
 ├─ database/
 │  ├─ migrations/
 │  └─ seeders/
 ├─ routes.php
 └─ haryadi (CLI entry)</code></pre>
+            </div>
           </section>
 
           <!-- Routing -->
-          <section id="routing">
-            <h3 class="text-2xl font-semibold">Routing</h3>
-            <p class="text-muted mt-2">
-              Routing bersifat sederhana: static routes dan closure/controller
-              mapping.
+          <section id="routing" class="docs-section">
+            <h2 class="section-title"># Routing</h2>
+
+            <p class="section-subtitle">
+              Routing di <strong>Haryadi Framework</strong> mengatur hubungan
+              antara URL dan aksi (controller atau callback) yang akan
+              dijalankan. Sistem routing ini ringan, cepat, dan mendukung
+              berbagai metode HTTP seperti <code>GET</code>, <code>POST</code>,
+              <code>PUT</code>, <code>PATCH</code>, dan <code>DELETE</code>.
             </p>
-            <pre><code>// routes.php
+
+            <h3 class="section-sub">1. Contoh Dasar</h3>
+            <div class="code-block">
+              <pre><code>use Haryadi\Core\Router;
 use App\Controllers\WelcomeController;
 
 Router::get('/', [WelcomeController::class, 'index'])->name('home');
-Router::get('/users', [UserController::class, 'index']);
-Router::post('/users', [UserController::class, 'store']);</code></pre>
+Router::post('/user', [UserController::class, 'store']);
+Router::delete('/user/{id}', [UserController::class, 'destroy']);
+</code></pre>
+            </div>
 
-            <p class="mt-2 text-sm text-muted">
-              Router mendukung methods: <code>get</code>, <code>post</code>,
-              <code>put</code>, <code>patch</code>, <code>delete</code>, dan
-              route names.
+            <p class="text-muted mt-3">
+              Masing-masing route dapat diberikan <code>name()</code> untuk
+              memudahkan referensi.
+            </p>
+
+            <h3 class="section-sub">2. Struktur Kelas Route</h3>
+            <p class="text-muted">
+              Kelas <code>Route</code> merepresentasikan satu definisi rute
+              tunggal.
+            </p>
+
+            <div class="code-block">
+              <pre><code>namespace Haryadi\Core;
+
+class Route
+{
+    public string $method;
+    public string $path;
+    public $handler;
+    public ?string $name = null;
+
+    public function __construct(string $method, string $path, $handler)
+    {
+        $this->method = strtoupper($method);
+        $this->path = $path;
+        $this->handler = $handler;
+    }
+
+    public function name(string $name): self
+    {
+        $this->name = $name;
+        return $this;
+    }
+}
+</code></pre>
+            </div>
+
+            <h3 class="section-sub mt-5">3. Kelas Router</h3>
+            <p class="text-muted">
+              Kelas <code>Router</code> bertanggung jawab mendaftarkan,
+              menyimpan, dan mengeksekusi rute. Ia juga mengelola instance
+              tunggal (singleton) agar semua route berada dalam satu konteks.
+            </p>
+
+            <table class="docs-table">
+              <thead>
+                <tr>
+                  <th>Metode</th>
+                  <th>Deskripsi</th>
+                  <th>Contoh</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>Router::get($path, $handler)</code></td>
+                  <td>Menangani request HTTP GET.</td>
+                  <td>
+                    <code
+                      >Router::get('/', [HomeController::class, 'index']);</code
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>Router::post($path, $handler)</code></td>
+                  <td>Menangani request HTTP POST.</td>
+                  <td>
+                    <code
+                      >Router::post('/login', [AuthController::class,
+                      'store']);</code
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>Router::put($path, $handler)</code></td>
+                  <td>Menangani request HTTP PUT (update data).</td>
+                  <td>
+                    <code
+                      >Router::put('/user/{id}', [UserController::class,
+                      'update']);</code
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>Router::patch($path, $handler)</code></td>
+                  <td>Menangani request HTTP PATCH (partial update).</td>
+                  <td>
+                    <code
+                      >Router::patch('/user/{id}', [UserController::class,
+                      'patch']);</code
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>Router::delete($path, $handler)</code></td>
+                  <td>Menangani request HTTP DELETE.</td>
+                  <td>
+                    <code
+                      >Router::delete('/user/{id}', [UserController::class,
+                      'destroy']);</code
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>$route->name('nama')</code></td>
+                  <td>Memberi nama pada route untuk kemudahan referensi.</td>
+                  <td>
+                    <code
+                      >Router::get('/dashboard', [DashController::class,
+                      'index'])->name('dashboard');</code
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3 class="section-sub mt-5">4. Dispatching Request</h3>
+            <p class="text-muted">
+              Fungsi <code>dispatch()</code> digunakan untuk mencocokkan request
+              pengguna dengan daftar route yang telah didaftarkan.
+            </p>
+
+            <div class="code-block">
+              <pre><code>public static function dispatch(Request $request): Response
+{
+    $uri = rtrim(strtok($_SERVER['REQUEST_URI'], '?'), '/') ?: '/';
+    $method = $_SERVER['REQUEST_METHOD'];
+    $router = self::getInstance();
+
+    foreach ($router->getRoutes() as $route) {
+        if ($route->method === $method && $route->path === $uri) {
+            if (is_array($route->handler)) {
+                [$controller, $func] = $route->handler;
+                $response = (new $controller())->$func();
+                return $response instanceof Response ? $response : new Response($response);
+            } elseif (is_callable($route->handler)) {
+                $response = call_user_func($route->handler, $request);
+                return $response instanceof Response ? $response : new Response($response);
+            }
+        }
+    }
+
+    // Route tidak ditemukan
+    return new Response('404 Not Found', 404);
+}
+</code></pre>
+            </div>
+
+            <p class="note mt-4">
+              ⚠️ <strong>Catatan:</strong> Jika tidak ada rute yang cocok,
+              framework akan mengembalikan <code>404 Not Found</code>.
+            </p>
+
+            <h3 class="section-sub mt-5">5. Helper Fungsi Terkait</h3>
+            <p class="text-muted">
+              Beberapa helper berguna untuk mendukung sistem routing:
+            </p>
+
+            <ul class="helper-list">
+              <li>
+                <code>env($key, $default = null)</code> — Membaca konfigurasi
+                dari file <code>.env</code>.
+              </li>
+              <li>
+                <code>view($view, $data = [])</code> — Render tampilan dari
+                direktori <code>views/</code>.
+              </li>
+              <li>
+                <code>config($key, $default = null)</code> — Mengambil nilai
+                dari file konfigurasi.
+              </li>
+              <li>
+                <code>throw_if($condition, $exception)</code> — Melempar
+                exception jika kondisi terpenuhi.
+              </li>
+              <li>
+                <code>base_path($path = '')</code> — Mendapatkan path absolut
+                project.
+              </li>
+            </ul>
+
+            <p class="note mt-4">
+              💡 <strong>Tips:</strong> Helper dapat diperluas di file
+              <code>src/Core/helpers.php</code> untuk fungsi-fungsi tambahan.
             </p>
           </section>
 
           <!-- Controllers -->
-          <section id="controllers">
-            <h3 class="text-2xl font-semibold">Controllers</h3>
-            <p class="text-muted mt-2">
-              Controller standard: kelas dengan method yang menerima request,
-              mengembalikan view/JSON.
+          <section id="controllers" class="docs-section">
+            <h2 class="section-title"># Controllers</h2>
+            <p class="section-subtitle">
+              Controller standar di Haryadi Framework adalah kelas yang berisi
+              method untuk menangani request dan mengembalikan response (view,
+              redirect, atau JSON).
             </p>
-            <pre><code>namespace App\Controllers;
+
+            <div class="code-block">
+              <pre><code>namespace App\Controllers;
 
 use Haryadi\Core\Controller;
 
@@ -197,63 +391,414 @@ class UserController extends Controller
     public function index()
     {
         $users = \App\Models\User::all();
-        return view('users.index', compact('users'));
+        return $this->view('users.index', compact('users'));
     }
 
     public function store()
     {
-        $data = request()->all();
+        $data = $this->input();
+        $this->validate([
+            'nama' => 'required',
+            'email' => 'required|email',
+        ], $data);
+
         \App\Models\User::create($data);
-        return redirect('/users');
+        return $this->redirect('/users');
     }
 }
 </code></pre>
+            </div>
+
+            <h3 class="section-sub">
+              Kelas Dasar: <code>Haryadi\Core\Controller</code>
+            </h3>
+            <p class="text-muted">
+              Kelas <code>Controller</code> adalah fondasi utama yang digunakan
+              oleh semua controller dalam framework Haryadi. Menyediakan method
+              bantu seperti <code>view()</code>, <code>redirect()</code>,
+              <code>input()</code>, <code>validate()</code>, dan
+              <code>json()</code>.
+            </p>
+
+            <table class="docs-table">
+              <thead>
+                <tr>
+                  <th>Metode</th>
+                  <th>Deskripsi</th>
+                  <th>Contoh</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>view(string $view, array $data = [])</code></td>
+                  <td>Render view dengan data tertentu.</td>
+                  <td>
+                    <code
+                      >$this->view('welcome', ['title' => 'Halo Dunia']);</code
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>redirect(string $url)</code></td>
+                  <td>Mengarahkan pengguna ke URL lain.</td>
+                  <td><code>$this->redirect('/login');</code></td>
+                </tr>
+                <tr>
+                  <td>
+                    <code>input(?string $key = null, $default = null)</code>
+                  </td>
+                  <td>
+                    Ambil data dari <code>$_GET</code> atau <code>$_POST</code>.
+                  </td>
+                  <td><code>$username = $this->input('username');</code></td>
+                </tr>
+                <tr>
+                  <td><code>validate(array $rules, array $data)</code></td>
+                  <td>
+                    Validasi sederhana dengan aturan seperti
+                    <code>required</code> dan <code>email</code>.
+                  </td>
+                  <td>
+                    <code
+                      >$this->validate(['email' => 'required|email'],
+                      $data);</code
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <code>json(array|object $data, int $status = 200)</code>
+                  </td>
+                  <td>Mengirim response dalam format JSON.</td>
+                  <td><code>$this->json(['success' => true]);</code></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="code-block mt-4">
+              <pre><code>namespace Haryadi\Core;
+
+class Controller
+{
+    protected function view(string $view, array $data = [])
+    {
+        return View::make($view, $data);
+    }
+
+    protected function redirect(string $url)
+    {
+        header("Location: {$url}");
+        exit;
+    }
+
+    protected function input(?string $key = null, $default = null)
+    {
+        $input = array_merge($_GET ?? [], $_POST ?? []);
+        return $key ? ($input[$key] ?? $default) : $input;
+    }
+
+    protected function validate(array $rules, array $data): void
+    {
+        foreach ($rules as $field => $rule) {
+            $value = $data[$field] ?? null;
+            $parts = explode('|', $rule);
+
+            foreach ($parts as $r) {
+                if ($r === 'required' && empty($value)) {
+                    throw new \Exception("Field '{$field}' wajib diisi.");
+                }
+                if ($r === 'email' && !filter_var($value, FILTER_VALIDATE_EMAIL)) {
+                    throw new \Exception("Field '{$field}' harus berupa email valid.");
+                }
+            }
+        }
+    }
+
+    protected function json(array|object $data, int $status = 200): void
+    {
+        http_response_code($status);
+        header('Content-Type: application/json');
+        echo json_encode($data);
+        exit;
+    }
+}
+</code></pre>
+            </div>
+
+            <p class="note mt-4">
+              💡 <strong>Tips:</strong> Semua controller di aplikasi sebaiknya
+              mewarisi (extends) kelas ini agar memiliki akses ke seluruh
+              utilitas built-in framework.
+            </p>
           </section>
 
           <!-- Models -->
-          <section id="models">
-            <h3 class="text-2xl font-semibold">Models & ORM</h3>
+          <section id="models" class="docs-section">
+            <h3 class="section-title">Models</h3>
             <p class="text-muted mt-2">
-              Model extend <code>Haryadi\Core\Model</code>. Mendukung
-              Eloquent-like API: <code>all(), find(), create(), where()</code>.
+              Model di Haryadi Framework digunakan untuk berinteraksi dengan
+              database menggunakan pendekatan <b>ORM sederhana berbasis PDO</b>.
+              Setiap model mewarisi <code>Haryadi\Core\Model</code> dan otomatis
+              terhubung ke konfigurasi database melalui
+              <code>Database::connect()</code>.
             </p>
-            <pre><code>namespace App\Models;
+
+            <h4 class="section-subtitle mt-4">1. Contoh Model</h4>
+            <div class="code-block">
+              <pre><code>namespace App\Models;
 
 use Haryadi\Core\Model;
+use Haryadi\Core\Factories\HasFactory;
 
 class User extends Model
 {
-    protected $table = 'users';
-    protected $fillable = ['name','email','password'];
+    use HasFactory;
+
+    protected static string $table = 'users';
+
+    protected array $fillable = [
+        'name', 'email', 'password'
+    ];
+
+    public bool $timestamps = true;
 }
 </code></pre>
+            </div>
+
+            <h4 class="section-subtitle mt-4">2. Properti Penting</h4>
+            <ul class="docs-table">
+              <li><b>$table</b> → Nama tabel database</li>
+              <li><b>$primaryKey</b> → Default <code>id</code>, bisa diubah</li>
+              <li>
+                <b>$fillable</b> → Field yang dapat diisi massal (mass
+                assignment)
+              </li>
+              <li>
+                <b>$hidden</b> → Field yang disembunyikan saat serialisasi
+              </li>
+              <li>
+                <b>$casts</b> → Konversi otomatis tipe data (int, bool,
+                datetime, dll)
+              </li>
+              <li>
+                <b>$timestamps</b> → Aktifkan kolom <code>created_at</code> dan
+                <code>updated_at</code>
+              </li>
+            </ul>
+
+            <h4 class="section-subtitle mt-4">3. Metode Utama</h4>
+            <table class="docs-table">
+              <thead>
+                <tr>
+                  <th>Metode</th>
+                  <th>Deskripsi</th>
+                  <th>Contoh</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>all()</code></td>
+                  <td>Ambil semua data dari tabel</td>
+                  <td><code>User::all();</code></td>
+                </tr>
+                <tr>
+                  <td><code>find($id)</code></td>
+                  <td>Cari data berdasarkan primary key</td>
+                  <td><code>User::find(1);</code></td>
+                </tr>
+                <tr>
+                  <td><code>where($column, $value)</code></td>
+                  <td>Ambil 1 data sesuai kondisi</td>
+                  <td><code>User::where('email', 'mail@test.com');</code></td>
+                </tr>
+                <tr>
+                  <td><code>create($data)</code></td>
+                  <td>Simpan data baru ke tabel</td>
+                  <td><code>$user->create($_POST);</code></td>
+                </tr>
+                <tr>
+                  <td><code>update($id, $data)</code></td>
+                  <td>Perbarui data berdasarkan ID</td>
+                  <td><code>$user->update(1, ['name' => 'Deni']);</code></td>
+                </tr>
+                <tr>
+                  <td><code>delete($id)</code></td>
+                  <td>Hapus data berdasarkan ID</td>
+                  <td><code>User::delete(3);</code></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4 class="section-subtitle mt-4">4. Contoh Lengkap</h4>
+            <div class="code-block">
+              <pre><code>$user = new User();
+
+// Simpan data baru
+$user->create([
+  'name' => 'Deni Agus Haryadi',
+  'email' => 'deni@example.com',
+  'password' => password_hash('123456', PASSWORD_BCRYPT)
+]);
+
+// Ambil semua user
+$users = User::all();
+
+// Cari user
+$single = User::find(1);
+
+// Update data
+$user->update(1, ['name' => 'Deni A. Haryadi']);
+
+// Hapus data
+User::delete(2);
+</code></pre>
+            </div>
+
+            <h4 class="section-subtitle mt-4">5. CLI Generator</h4>
+            <p>
+              Untuk membuat model baru dengan cepat, gunakan perintah CLI
+              bawaan:
+            </p>
+            <div class="code-block">
+              <pre><code>php haryadi make:model NamaModel</code></pre>
+            </div>
+
+            <p>
+              📁 File akan otomatis dibuat di
+              <code>app/Models/NamaModel.php</code>.
+            </p>
+
+            <div class="note">
+              <b>💡 Tip:</b> Gunakan
+              <code>protected $timestamps = true;</code> agar otomatis
+              menambahkan <code>created_at</code> dan <code>updated_at</code>.
+            </div>
           </section>
 
-          <!-- Views -->
-          <section id="views">
-            <h3 class="text-2xl font-semibold">Views (Templating)</h3>
+          <!-- Views (Templating) -->
+          <section id="views" class="docs-section">
+            <h3 class="section-title">Views (Templating)</h3>
+            <p class="text-muted">
+              Sistem <b>View</b> di Haryadi Framework menggunakan pendekatan
+              sederhana: file PHP murni yang berada di
+              <code>resources/views</code> dan dapat dipanggil melalui helper
+              <code>view()</code>.
+            </p>
+
+            <h4 class="section-subtitle mt-4">📁 Struktur View</h4>
+            <div class="code-block">
+              <pre><code>resources/
+└── views/
+    ├── users/
+    │   └── index.haryadi.php
+    └── layout/
+        └── main.haryadi.php
+</code></pre>
+            </div>
+
+            <h4 class="section-subtitle mt-4">1. Contoh Penggunaan</h4>
+            <div class="code-block">
+              <pre><code>// Controller
+namespace App\Controllers;
+
+use Haryadi\Core\Controller;
+use App\Models\User;
+
+class UserController extends Controller
+{
+    public function index()
+    {
+        $users = User::all();
+        return view('users.index', compact('users'));
+    }
+}
+</code></pre>
+            </div>
+
+            <h4 class="section-subtitle mt-4">2. File View</h4>
+            <div class="code-block">
+              <pre><code>// resources/views/users/index.haryadi.php
+&lt;?php foreach($users as $user): ?&gt;
+  &lt;div class="user"&gt;
+    &lt;?= e($user['name']) ?&gt;
+  &lt;/div&gt;
+&lt;?php endforeach; ?&gt;
+</code></pre>
+            </div>
+
             <p class="text-muted mt-2">
-              Sistem view ringan: file PHP di
-              <code>resources/views</code> dengan helper <code>view()</code>.
+              Setiap file <code>.haryadi.php</code> dapat berisi HTML, PHP, atau
+              kombinasi keduanya. Framework akan melakukan
+              <b>render dengan output buffering</b> sehingga hasilnya
+              dikembalikan sebagai string.
             </p>
-            <pre><code>// resources/views/users/index.php
-&lt;?php foreach($users as $u): ?&gt;
-  &lt;div&gt;&lt;?= e($u->name) ?&gt;&lt;/div&gt;
-&lt;?php endforeach; ?&gt;</code></pre>
-            <p class="mt-2 text-sm text-muted">
-              Tersedia helper: <code>view()</code>, <code>redirect()</code>,
-              <code>e()</code> (escape).
-            </p>
+
+            <h4 class="section-subtitle mt-4">3. Kelas View</h4>
+            <div class="code-block">
+              <pre><code>namespace Haryadi\Core;
+
+class View
+{
+    public static function make($view, $data = [])
+    {
+        $file = BASE_PATH . "/resources/Views/" . str_replace('.', '/', $view) . ".haryadi.php";
+
+        if (!file_exists($file)) {
+            throw new \Exception("View '{$view}.haryadi.php' tidak ditemukan!");
+        }
+
+        extract($data); // Konversi array ke variabel
+        ob_start();
+        include $file;
+        return ob_get_clean(); // Kembalikan hasil render
+    }
+}
+</code></pre>
+            </div>
+
+            <h4 class="section-subtitle mt-4">4. Helper Fungsi</h4>
+            <ul class="docs-list">
+              <li><code>view($view, $data = [])</code> — Render file view</li>
+              <li><code>redirect($path)</code> — Redirect ke URL lain</li>
+              <li><code>e($value)</code> — Escape output agar aman dari XSS</li>
+            </ul>
+
+            <h4 class="section-subtitle mt-4">5. Contoh Lengkap</h4>
+            <div class="code-block">
+              <pre><code>// Controller
+public function showProfile()
+{
+    $user = User::find(1);
+    return view('profile.show', ['user' => $user]);
+}
+
+// resources/views/profile/show.haryadi.php
+&lt;h1&gt;Profil Pengguna&lt;/h1&gt;
+&lt;p&gt;Nama: &lt;?= e($user->name) ?&gt;&lt;/p&gt;
+&lt;p&gt;Email: &lt;?= e($user->email) ?&gt;&lt;/p&gt;
+</code></pre>
+            </div>
+
+            <div class="note info">
+              <div class="note-icon">💡</div>
+              <div class="note-content">
+                <strong>Tips:</strong> Kamu dapat membuat struktur folder view
+                yang dalam menggunakan dot notation. Contoh:
+                <code>view('dashboard.user.profile')</code> akan mencari
+                <code>resources/views/dashboard/user/profile.haryadi.php</code>.
+              </div>
+            </div>
           </section>
 
           <!-- Middleware -->
-          <section id="middleware">
-            <h3 class="text-2xl font-semibold">Middleware</h3>
+          <section id="middleware" class="docs-section">
+            <h3 class="section-title">Middleware</h3>
             <p class="text-muted mt-2">
               Middleware dapat didefinisikan di <code>app/Middleware</code> dan
               diregistrasi di provider router.
             </p>
-            <pre><code>// app/Middleware/AuthMiddleware.php
+            <div class="code-block">
+              <pre><code>// app/Middleware/AuthMiddleware.php
 class AuthMiddleware
 {
     public function handle($request, $next)
@@ -265,90 +810,171 @@ class AuthMiddleware
     }
 }
 </code></pre>
+            </div>
+            <div class="note info">
+              <div class="note-icon">💡</div>
+              <div class="note-content">
+                <strong>Tips:</strong> Kamu dapat membuat struktur folder view
+                yang dalam menggunakan dot notation. Contoh:
+                <code>view('dashboard.user.profile')</code> akan mencari
+                <code>resources/views/dashboard/user/profile.haryadi.php</code>.
+              </div>
+            </div>
           </section>
 
           <!-- CLI -->
-          <section id="cli">
-            <h3 class="text-2xl font-semibold">CLI — php haryadi</h3>
+          <section id="cli" class="docs-section">
+            <h3 class="section-title">CLI — php haryadi</h3>
             <p class="text-muted mt-2">
               CLI tool sederhana untuk menjalankan server, migrasi, make
               commands.
             </p>
-            <pre><code>php haryadi bantuan
-php haryadi layanan        # serve (built-in PHP server)
-php haryadi make:controller UserController
-php haryadi migrate</code></pre>
-
-            <p class="mt-2 text-sm text-muted">Contoh output help:</p>
-            <pre><code>Commands:
-  layanan       Serve application (php -S)
-  migrate       Run database migrations
-  make:controller  Create new controller
-  bantuan       Show help</code></pre>
+            <div class="code-block">
+              <pre><code>
+php haryadi layanan           : Menjalankan server lokal                      
+php haryadi route:list        : Menampilkan semua route                       
+php haryadi buat:model        : Membuat model baru                            
+php haryadi buat:controller   : Membuat controller baru                       
+php haryadi buat:view         : Membuat view baru                             
+php haryadi buat:migration    : Membuat migration baru                        
+php haryadi buat:seeder       : Menjalankan seeder baru                       
+php haryadi migrasi           : Menjalankan migrasi database                  
+php haryadi db:seed           : Menjalankan seeder database                   
+php haryadi bantuan           : Menampilkan daftar command</code></pre>
+            </div>
           </section>
 
           <!-- Migrations -->
-          <section id="migrations">
-            <h3 class="text-2xl font-semibold">Migrations & Seeders</h3>
+          <section id="migrations" class="docs-section">
+            <h3 class="section-title">Migrations & Seeders</h3>
+
             <p class="text-muted mt-2">
-              Migrations: file PHP di
-              <code>database/migrations</code> dengan class yang mengimplement
-              <code>up()</code> dan <code>down()</code>.
+              <b>Migrations</b> adalah file PHP di
+              <code>database/migrations</code> yang digunakan untuk membuat dan
+              mengubah struktur tabel database. Setiap migration memiliki method
+              <code>up()</code> untuk membuat tabel atau kolom, dan
+              <code>down()</code>
+              untuk rollback.
             </p>
-            <pre><code>class CreateUsersTable {
-  public function up(){
-    // buat table users via DB schema
+
+            <div class="code-block mt-2">
+              <pre><code>class CreateUsersTable {
+  public function up() {
+    // buat tabel users
   }
-  public function down(){
-    // drop table
+
+  public function down() {
+    // drop tabel
   }
+}</code></pre>
+            </div>
+
+            <div class="note info mt-2">
+              <div class="note-icon">💡</div>
+              <div class="note-content">
+                Tips: Gunakan nama migration dengan format
+                <code>php haryadi buat:migration create_nama_table</code>
+                untuk kemudahan generate nama tabel.
+              </div>
+            </div>
+
+            <h4 class="section-subtitle mt-4">1. Contoh Migration</h4>
+            <pre><code>// database/migrations/2025_10_29_123456_create_users_table.php
+return new class {
+    public function up() {
+        Tabel::create('users', function (Bagan $tabel) {
+            $tabel->id();
+            $tabel->string('name');
+            $tabel->timestamps();
+        });
+    }
+
+    public function down() {
+        Tabel::dropIfExists('users');
+    }
+};
+</code></pre>
+
+            <h4 class="section-subtitle mt-4">2. Seeders</h4>
+            <p class="text-muted">
+              Seeders digunakan untuk mengisi data awal database. File disimpan
+              di
+              <code>database/seeders</code> dengan method <code>run()</code>.
+            </p>
+
+            <pre><code>// database/seeders/UserSeeder.php
+namespace Database\Seeders;
+
+use Haryadi\Core\Model;
+
+class UserSeeder extends Seeder
+{
+    public function run(): void
+    {
+        Model::factory(10)->create();
+    }
 }
 </code></pre>
+
+            <div class="note info mt-2">
+              <div class="note-icon">💡</div>
+              <div class="note-content">
+                Tips: Jalankan seeder dengan command
+                <code>php haryadi make:seeder UserSeeder</code> dan panggil
+                <code>call(UserSeeder::class)</code> untuk mengeksekusi.
+              </div>
+            </div>
           </section>
 
           <!-- Auth -->
-          <section id="auth">
-            <h3 class="text-2xl font-semibold">
-              Authentication & Authorization
-            </h3>
+          <section id="auth" class="docs-section">
+            <h3 class="section-title">Authentication & Authorization</h3>
             <p class="text-muted mt-2">
               Kerangka menyediakan helper auth sederhana:
               <code>auth()->user()</code>, <code>guest()</code>, dan trait
               role-based basic.
             </p>
-            <pre><code>// contoh register
-$user = App\Models\User::create([ 'name'=>'Deni', 'email'=>'d@example.com', 'password'=>password_hash('secret', PASSWORD_DEFAULT) ]);
+            <div class="code-block">
+              <pre><code>// contoh register
+$user = App\Models\User::create([ 
+'name'=>'Deni', 
+'email'=>'d@example.com', 
+'password'=>password_hash('secret', PASSWORD_DEFAULT) ]);
 
 // middleware pengecekan role
 if(!in_array('admin', $user->roles ?? [])) abort(403);
 </code></pre>
+            </div>
           </section>
 
           <!-- Configuration -->
-          <section id="configuration">
-            <h3 class="text-2xl font-semibold">Configuration & Environment</h3>
+          <section id="configuration" class="docs-section">
+            <h3 class="section-title">Configuration & Environment</h3>
             <p class="text-muted mt-2">
               Gunakan file <code>.env</code> untuk konfigurasi. Config di
               <code>config/</code> sebagai array PHP.
             </p>
-            <pre><code>// .env
+            <div class="code-block">
+              <pre><code>// .env
 APP_ENV=local
 DB_HOST=127.0.0.1
 DB_DATABASE=haryadi
 DB_USERNAME=root
 DB_PASSWORD=
 </code></pre>
+            </div>
           </section>
 
           <!-- Error Handling -->
-          <section id="errors">
-            <h3 class="text-2xl font-semibold">Error Handling & Debug</h3>
+          <section id="errors" class="docs-section">
+            <h3 class="section-title">Error Handling & Debug</h3>
             <p class="text-muted mt-2">
               Core menyediakan handler error yang bisa ditoggle via
               <code>APP_DEBUG</code>. Untuk page error khusus, letakkan file di
               <code>resources/errors</code>.
             </p>
-            <pre><code>// contoh menangani exception
+            <div class="code-block">
+              <pre><code>// contoh menangani exception
 try{
   // kode
 }catch(\Exception $e){
@@ -358,24 +984,27 @@ try{
   view('errors.500');
 }
 </code></pre>
+            </div>
           </section>
 
           <!-- Testing -->
-          <section id="testing">
-            <h3 class="text-2xl font-semibold">Testing</h3>
+          <section id="testing" class="docs-section">
+            <h3 class="section-title">Testing</h3>
             <p class="text-muted mt-2">
               Tidak terikat ke framework testing tertentu. Direkomendasikan
               menggunakan PHPUnit.
             </p>
-            <pre><code>composer require --dev phpunit/phpunit
+            <div class="code-block">
+              <pre><code>composer require --dev phpunit/phpunit
 ./vendor/bin/phpunit --configuration phpunit.xml</code></pre>
+            </div>
           </section>
 
           <!-- Deployment -->
-          <section id="deployment">
-            <h3 class="text-2xl font-semibold">Deployment</h3>
+          <section id="deployment" class="docs-section">
+            <h3 class="section-title">Deployment</h3>
             <p class="text-muted mt-2">Langkah umum:</p>
-            <ol class="list-decimal ml-6 text-sm text-muted mt-2 space-y-1">
+            <ol class="list-disc mt-2">
               <li>Set environment production pada file <code>.env</code></li>
               <li>Upload kode ke server (Git/FTP)</li>
               <li>
@@ -391,9 +1020,9 @@ try{
           </section>
 
           <!-- Troubleshooting -->
-          <section id="troubleshoot">
-            <h3 class="text-2xl font-semibold">Troubleshooting & FAQ</h3>
-            <div class="mt-3 space-y-3 text-sm text-muted">
+          <section id="troubleshoot" class="docs-section">
+            <h3 class="section-title">Troubleshooting & FAQ</h3>
+            <div class="mt-3 text-muted">
               <div>
                 <strong>Error Composer autoload (PSR-4)</strong>
                 <p class="mt-1">
@@ -420,10 +1049,10 @@ try{
           </section>
 
           <!-- Contribute -->
-          <section id="contribute">
-            <h3 class="text-2xl font-semibold">Contribute & Development</h3>
+          <section id="contribute" class="docs-section">
+            <h3 class="section-title">Contribute & Development</h3>
             <p class="text-muted mt-2">Panduan singkat untuk kontributor:</p>
-            <ul class="ml-6 text-sm text-muted list-disc">
+            <ul class="ml-6 list-disc">
               <li>Fork repo, buat branch feature/<em>nama</em></li>
               <li>Tulis test untuk fitur baru</li>
               <li>Submit PR dengan deskripsi perubahan</li>
@@ -432,17 +1061,19 @@ try{
           </section>
 
           <!-- Appendix: Commands & Shortcuts -->
-          <section id="appendix">
-            <h3 class="text-2xl font-semibold">Appendix — Perintah Penting</h3>
+          <!-- <section id="appendix" class="docs-section">
+            <h3 class="section-title">Appendix — Perintah Penting</h3>
             <div class="mt-3 grid grid-cols-1 lg:grid-cols-2 gap-4">
               <div>
                 <h4 class="font-semibold">Server & CLI</h4>
-                <pre><code>php haryadi layanan       # Jalankan built-in server
+                <div class="code-block">
+                  <pre><code>php haryadi layanan       # Jalankan built-in server
 php haryadi bantuan        # Tampilkan bantuan
 php haryadi make:controller NameController
 php haryadi make:model Name
 php haryadi migrate
 php haryadi db:seed</code></pre>
+                </div>
               </div>
               <div>
                 <h4 class="font-semibold">Pemeliharaan</h4>
@@ -452,7 +1083,7 @@ chown -R www-data:www-data storage/ public/uploads
 </code></pre>
               </div>
             </div>
-          </section>
+          </section> -->
 
           <!-- Footer -->
           <!-- Footer -->
