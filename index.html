@@ -46,7 +46,9 @@
             <a href="#projects" class="nav-link">Project</a>
           </li>
           <li class="nav-item">
-            <a href="dokumentasi.html" class="nav-link"> Dokumentasi </a>
+            <a href="dokumentasi.html" class="nav-link" id="navDokumentasi"
+              >Dokumentasi</a
+            >
           </li>
         </ul>
         <div class="theme-toggle">
@@ -711,10 +713,8 @@
 
     <script src="assets/js/script.js"></script>
     <script>
-      const current = window.location.pathname.split("/").pop();
-      if (current === "dokumentasi.html") {
-        document.getElementById("navDokumentasi").classList.add("active");
-      }
+      document.getElementById("current-year").textContent =
+        new Date().getFullYear();
     </script>
   </body>
 </html>
