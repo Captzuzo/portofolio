@@ -20,6 +20,7 @@
   --text-primary: #2d3748;
   --text-secondary: #718096;
   --text-light: #a0aec0;
+  --text-white: #000000;
 
   /* Background Colors */
   --bg-primary: #f8fafc;
@@ -57,9 +58,12 @@
 }
 
 .dark-mode {
+  --primary-color: #f39c12;
+
   --text-primary: #f1f3f5;
   --text-secondary: #adb5bd;
   --text-light: #868e96;
+  --text-white: #ffffff;
 
   --bg-primary: #121212;
   --bg-secondary: #1e1e1e;
@@ -105,12 +109,12 @@ body {
 .nav-brand h2 {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--text-white);
   letter-spacing: 0.5px;
 }
 
 .nav-brand span {
-  color: #7c3aed; /* ungu utama */
+  color: var(--primary-color); /* ungu utama */
 }
 
 .nav-menu {
@@ -351,12 +355,14 @@ header {
 }
 
 .nav-brand h2 {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 700;
+  color: var(--text-white);
+  letter-spacing: 0.5px;
 }
 
 .nav-brand span {
-  color: var(--primary-color);
+  color: var(--primary-color); /* ungu utama */
 }
 
 .nav-menu {
@@ -1020,84 +1026,6 @@ header {
 }
 
 /* ===== SKILLS SECTION ===== */
-/* .skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: var(--space-xl);
-}
-
-.skill-category {
-  background: var(--bg-card);
-  border-radius: var(--radius-lg);
-  padding: var(--space-xl);
-  box-shadow: var(--shadow-md);
-  transition: var(--transition-normal);
-}
-
-.skill-category:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-}
-
-.category-title {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  margin-bottom: var(--space-lg);
-  color: var(--primary-color);
-  font-size: 1.3rem;
-  font-weight: 600;
-}
-
-.category-title i {
-  font-size: 1.2rem;
-}
-
-.skills-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
-}
-
-.skill-item {
-  margin-bottom: var(--space-md);
-}
-
-.skill-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--space-sm);
-}
-
-.skill-name {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.skill-level {
-  font-size: 0.8rem;
-  color: var(--primary-color);
-  font-weight: 600;
-  background: rgba(58, 134, 255, 0.1);
-  padding: 4px 8px;
-  border-radius: 12px;
-}
-
-.skill-bar {
-  height: 8px;
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.dark-mode .skill-bar {
-  background: rgba(255, 255, 255, 0.1);
-}
-
 .skill-progress {
   height: 100%;
   background: linear-gradient(
@@ -1108,7 +1036,8 @@ header {
   border-radius: 4px;
   width: 0;
   transition: width 1.5s ease-in-out;
-} */
+}
+*/
 /* Ubah grid menjadi horizontal scroll */
 .skills-grid {
   display: flex;
