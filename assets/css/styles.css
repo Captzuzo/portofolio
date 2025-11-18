@@ -89,144 +89,6 @@ body {
   transition: var(--transition-normal);
   overflow-x: hidden;
 }
-/* ==== HEADER & NAVBAR ==== */
-.header-custom {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  backdrop-filter: blur(10px);
-  background: rgba(15, 23, 42, 0.8); /* biru gelap transparan */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-}
-
-.nav-brand h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text-white);
-  letter-spacing: 0.5px;
-}
-
-.nav-brand span {
-  color: var(--primary-color); /* ungu utama */
-}
-
-.nav-menu {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-}
-
-.nav-item {
-  position: relative;
-}
-
-.nav-link {
-  color: #cbd5e1;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-.nav-link:hover,
-.nav-link.active {
-  color: #a78bfa;
-}
-
-.nav-link.active::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 100%;
-  height: 2px;
-  background: #7c3aed;
-  border-radius: 2px;
-}
-
-/* ==== TOMBOL TEMA ==== */
-.theme-toggle button {
-  background: none;
-  border: none;
-  color: #e2e8f0;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.theme-toggle button:hover {
-  color: #a78bfa;
-  transform: rotate(-10deg);
-}
-
-/* ==== HAMBURGER MENU (MOBILE) ==== */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-}
-
-.bar {
-  width: 25px;
-  height: 2px;
-  background-color: #e2e8f0;
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-
-/* ==== RESPONSIVE ==== */
-@media (max-width: 768px) {
-  .nav-menu {
-    display: none;
-    position: absolute;
-    top: 70px;
-    right: 0;
-    background: rgba(15, 23, 42, 0.95);
-    flex-direction: column;
-    width: 100%;
-    text-align: center;
-    padding: 1rem 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-  }
-
-  .nav-menu.active {
-    display: flex;
-  }
-
-  .hamburger {
-    display: flex;
-  }
-
-  .nav-link {
-    display: block;
-    padding: 0.75rem 0;
-  }
-}
-
-/* ==== SECTION HEADER (OVERVIEW) ==== */
-section header {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  padding-bottom: 1rem;
-}
-
-section header h2 {
-  font-size: 1.875rem;
-  font-weight: 700;
-  color: #fff;
-}
-
-section header p {
-  color: #94a3b8;
-  font-size: 0.95rem;
-  margin-top: 0.25rem;
-}
 
 .container {
   width: 90%;
@@ -362,7 +224,7 @@ header {
 }
 
 .nav-brand span {
-  color: var(--primary-color); /* ungu utama */
+  color: var(--primary-color);
 }
 
 .nav-menu {
@@ -1026,19 +888,6 @@ header {
 }
 
 /* ===== SKILLS SECTION ===== */
-.skill-progress {
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    var(--primary-color),
-    var(--secondary-color)
-  );
-  border-radius: 4px;
-  width: 0;
-  transition: width 1.5s ease-in-out;
-}
-*/
-/* Ubah grid menjadi horizontal scroll */
 .skills-grid {
   display: flex;
   overflow-x: auto;
@@ -1049,9 +898,8 @@ header {
   scrollbar-color: var(--primary-color) transparent;
 }
 
-/* Supaya setiap kartu tetap rapi saat di-swipe */
 .skill-category {
-  flex: 0 0 350px; /* ukuran tiap kartu */
+  flex: 0 0 350px;
   scroll-snap-align: start;
   background: var(--bg-card);
   border-radius: var(--radius-lg);
@@ -1060,7 +908,6 @@ header {
   transition: var(--transition-normal);
 }
 
-/* Hilangkan scrollbar di browser berbasis WebKit (Chrome, Edge, Safari) */
 .skills-grid::-webkit-scrollbar {
   height: 8px;
 }
@@ -1072,10 +919,21 @@ header {
   background: transparent;
 }
 
-/* Tambahan efek hover */
 .skill-category:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-lg);
+}
+
+.skill-progress {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  border-radius: 4px;
+  width: 0;
+  transition: width 1.5s ease-in-out;
 }
 
 /* ===== PROJECTS SECTION ===== */
